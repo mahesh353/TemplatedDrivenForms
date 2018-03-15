@@ -1,0 +1,83 @@
+<h4 style="text-align: center;"emplate Driven Form</h4>
+
+<hr>
+
+<html lang="en">
+
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+    <div class="container">
+        <form class="form-horizontal" #userForm="ngForm" (ngSubmit)="submitForm(userForm.value)" novalidate>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="email">First Name:</label>
+                <div class="col-sm-10">
+
+                    <input type="text" #firstName="ngModel" minlength="5" maxlength="10" class="form-control" required placeholder="Enter first name" name="firstName" ngModel>
+                    <!-- <div>{{firstName.className}}</div> {{to get the names of class which are attached by angular by default}}-->
+                    <div *ngIf="firstName.errors && firstName.dirty">
+                        <div class="alert alert-danger" *ngIf="firstName.errors.required">Name is required</div>   
+                        <div class="alert alert-danger" *ngIf="firstName.errors.minlength">Name should have minimum 5 characters</div>   
+                    </div>
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="pwd">Email:</label>
+                <div class="col-sm-10">
+
+                    <input type="text" class="form-control" placeholder="Enter email" name="email" ngModel>
+                    <!-- <span class="text-danger" *ngIf="userForm.get('email').hasError('required') && (userForm.get('email').dirty ||isSubmitted)">Email is required.</span>
+                    <span class="text-danger" *ngIf="userForm.get('email').hasError('pattern') && !userForm.get('email').hasError('required') && (userForm.get('email').dirty ||isSubmitted)">Please enter proper email format.</span> -->
+                </div>
+            </div>
+            <div ngModelGroup="address">
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="pwd">Country:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" placeholder="Enter country" name="country" ngModel>
+                        <!-- <span class="text-danger" *ngIf="userForm.get('mobile').hasError('minlength') && (userForm.get('mobile').dirty ||isSubmitted)">Mobile should be minimum of 10 chars.</span>
+                    <span class="text-danger" *ngIf="userForm.get('mobile').hasError('maxlength') && (userForm.get('mobile').dirty ||isSubmitted)">Mobile should be maximum of 10 chars.</span> -->
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="pwd">City:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" placeholder="Enter city" name="city" ngModel>
+                        <!-- <span class="text-danger" *ngIf="userForm.get('age').hasError('ageRange') && (userForm.get('age').dirty ||isSubmitted)">Age should be greater than 18 and less than 45.</span> -->
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="pwd">Postal Code:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" #potalCode pattern="^[0-9][1-9]{4}$" placeholder="Enter postal code" name="postalCode" ngModel>
+                        <!-- <span class="text-danger" *ngIf="userForm.get('age').hasError('ageRange') && (userForm.get('age').dirty ||isSubmitted)">Age should be greater than 18 and less than 45.</span> -->
+                        <div *ngIf="potalCode.errors && potalCode.dirty">
+                            <div class="alert alert-danger" *ngIf="potalCode.errors.pattern">Please enter proper postal code</div>   
+                              
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary" [disabled]="!userForm.valid">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</body>
+
+</html>
