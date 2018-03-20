@@ -3,7 +3,7 @@ import { Component } from '@angular/core'
 
 @Component({
     selector: 'my-app',
-    templateUrl: './templatedrivenforms/app.component.html',
+    templateUrl: './app/app.component.html',
     styles: [`input.ng-valid{ border-left:10px solid green }
     input.ng-invalid { border-left:10px solid red }`]
 
